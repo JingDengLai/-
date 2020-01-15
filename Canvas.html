@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			#canvas{
+				display: block;
+				margin: 30px auto;
+				box-shadow: 0 0 10px 3px #333333;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" width="800" height="800"></canvas>
+		
+		<!-- <script>
+			
+			var canvas = document.getElementById("canvas");
+			
+			if(canvas.getContext){
+				var ctx = canvas.getContext("2d");
+				
+				canvas.onmousedown = function(e){
+					var ev = e || window.event;
+					
+					var x = ev.clientX - canvas.offsetLeft;
+					var y = ev.clientY - canvas.offsetTop;
+					
+					ctx.strokeStyle = 'green';
+					ctx.lineWidth = 10;
+					
+					ctx.beginPath();
+					ctx.moveTo(x,y);
+					
+					canvas.onmousemove = function(e){
+						var ev = e || window.event;
+						
+						var x = ev.clientX - canvas.offsetLeft;
+						var y = ev.clientY - canvas.offsetTop;
+						
+						ctx.lineTo(x,y);
+						ctx.stroke();
+					}
+					canvas.onmouseup = function(){
+						canvas.onmousemove = "";
+					}
+				}
+				
+			}
+			
+		</script> -->
+		
+		
+		<!-- 刮刮乐 -->
+		<!-- <script>
+			var canvas = document.getElementById("canvas");
+			
+			if(canvas.getContext){
+				var ctx = canvas.getContext("2d");
+				
+				ctx.beginPath();
+				ctx.fillStyle = 'gray';
+				ctx.fillRect(0,0,canvas.width,canvas.height);
+				ctx.lineWidth = 30;
+				ctx.lineCap = 'round';
+				
+				ctx.globalCompositeOperation = 'destination-out';
+				
+				canvas.onmousedown = function(e){
+					var ev = e || window.event;
+					
+					var x = ev.clientX - canvas.offsetLeft;
+					var y = ev.clientY - canvas.offsetTop;
+					
+					
+					
+					ctx.moveTo(x,y);
+					
+					canvas.onmousemove = function(e){
+						var ev = e || window.event;
+						
+						var x = ev.clientX - canvas.offsetLeft;
+						var y = ev.clientY - canvas.offsetTop;
+						
+						ctx.lineTo(x,y);
+						ctx.stroke();
+					}
+					canvas.onmouseup = function(){
+						canvas.onmousemove = "";
+					}
+				}
+				
+			}
+		</script> -->
+		
+		<!-- <script>
+			var canvas = document.getElementById("canvas");
+			
+			if(canvas.getContext){
+				var ctx = canvas.getContext("2d");
+				var x=0, y=0, width = 100, height = 100;
+				var speedX = 2, speedY = 2;
+				
+				ctx.fillStyle = 'red'
+				ctx.fillRect(x, y, width, height)
+				
+				update()
+				function update(){
+					ctx.clearRect(0, 0, canvas.width, canvas.height);
+					
+					if (x > canvas.width - width){
+						speedX *= -1;
+					}else if (x < 0 ){
+						speedX *= -1
+					}
+					
+					if (y > canvas.height - height) {
+						speedY *= -1;
+					} else if (y < 0){
+						speedY *= -1;
+					}
+					
+					x += speedX;
+					y += speedY;
+					ctx.fillRect(x, y, width, height)
+					window.requestAnimationFrame(update)
+					
+				}
+			}
+		</script> -->
+		
+		<!-- 碰撞 -->
+		<!-- <script>
+			var canvas = document.getElementById("canvas");
+			
+			if(canvas.getContext){
+				var ctx = canvas.getContext("2d");
+				
+				function Ball(x,y,r,color,speed){
+					this.x = x;
+					this.y = y;
+					this.r = r;
+					this.color = color;
+					this.speed = speed;
+				}
+				Ball.prototype.draw = function(){
+					ctx.beginPath();
+					ctx.fillStyle = this.color;
+					ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+					ctx.fill();
+				}
+				
+				Ball.prototype.move = function() {
+					this.x += this.speed;
+					if (this.x > canvas.width - this.r){
+						this.speed *= -1;
+					}else if (this.x < this.r){
+						this.speed *= -1;
+					}
+				}
+				
+				var ball1 = new Ball(50,150,50,'red',5);
+				var ball2 = new Ball(750,150,50,'green',-2);
+				
+				ball1.draw();
+				ball2.draw();
+				
+				function animate() {
+					ctx.clearRect(0,0, canvas.width,canvas.height);
+					
+					if(isCircleHit(ball1, ball2)){
+						ball1.speed *= -1;
+						ball2.speed *= -1;
+					}
+					ball1.draw();
+					ball2.draw();
+					ball1.move();
+					ball2.move();
+					
+					window.requestAnimationFrame(animate);
+				}
+				animate();
+				
+				function isCircleHit(ball1, ball2){
+					var x1 = ball1.x;
+					var y1 = ball1.y;
+					var r1 = ball1.r;
+					
+					var x2 = ball2.x;
+					var y2 = ball2.y;
+					var r2 = ball2.r;
+					
+					var dx = x1 - x2;
+					var dy = y1 - y2;
+					
+					var distance = Math.sqrt(dx * dx + dy * dy);
+					
+					if (distance < r1 + r2){
+						return true;
+					}else{
+						return false;
+					}
+				}
+				
+			}
+		</script> -->
+	
+		<script>
+			 var canvas = document.getElementById("canvas");
+			 var isEatFood = false;
+			 var timer;
+			 if(canvas.getContext){
+			 	var ctx = canvas.getContext("2d");
+				
+				function React(x, y, width, height, color){
+					this.x = x;
+					this.y = y;
+					this.width = width;
+					this.height = height;
+					this.color = color
+				}
+				
+				React.prototype.rDraw = function() {
+					ctx.beginPath();
+					ctx.fillStyle = this.color;
+					ctx.fillRect(this.x, this.y, this.width, this.height);
+					ctx.strokeRect(this.x, this.y, this.width, this.height);
+				}
+				
+				function Snake(){
+					this.head = new React(canvas.width/2-40, canvas.height/2-40,40,40,'red');
+					this.body = new Array();
+					
+					var x = this.head.x - 40;
+					var y = this.head.y; 
+					
+					for(var i=0; i<3; i++){
+						var react = new React(x, y, 40, 40, 'gray');
+						this.body.push(react);
+						x -= 40;
+						
+					}
+					
+					this.direction = 2;
+				}
+				
+				Snake.prototype.sDraw = function(){
+					this.head.rDraw();
+					
+					for(var j= 0; j<this.body.length; j++){
+						this.body[j].rDraw();
+					}
+				}
+				
+				Snake.prototype.move = function(){
+					var rect = new React(this.head.x, this.head.y, this.head.width, this.head.height,'gray');
+					
+					this.body.splice(0,0,rect);
+					
+					if(isEatFood == false){
+						this.body.pop();
+					}else{
+						isEatFood = false;
+					}
+					
+					switch (this.direction){
+						case 0 :{
+							this.head.x -= this.head.width;
+							break;
+						}
+						
+						case 1 :{
+							this.head.y -= this.head.height;
+							break;
+						}
+						
+						case 2 :{
+							this.head.x += this.head.width;
+							break;
+						}
+						
+						case 3 :{
+							this.head.y += this.head.height;
+							break;
+						}
+					}
+					
+					
+					if(this.head.x < 0 || this.head.x > canvas.width-40 || 
+					this.head.y <0 || this.head.height > canvas.height-40){
+						clearInterval(timer);
+						timer = null;
+						alert("Game over~~");
+					}
+					
+					for (var i = 0; i < this.body.length; i++) {
+						if(isRectHit(this.head,this.body[i])){
+							clearInterval(timer);
+							timer = null;
+							alert("Game over~~");
+						}
+					}
+				}
+				
+				var snake = new Snake();
+				snake.sDraw();
+				
+				
+				
+				function animate() {
+					ctx.clearRect(0,0,canvas.width,canvas.height);
+					food.rDraw();
+					snake.move();
+					snake.sDraw();
+					
+					if(isRectHit(snake.head,food)){
+						isEatFood = true;
+						food = randForFood();
+					}
+				}
+				
+				timer = setInterval(animate,100);
+				
+				
+				var food = randForFood();
+				
+				function randForFood(){
+					
+					var isInSnake = true;
+					
+					while(isInSnake){
+						var x = getRandom(0, (canvas.width-40)/40) * 40;
+						var y = getRandom(0, (canvas.height-40)/40) * 40;
+						
+						var rect = new React(x,y,40,40,'blue');
+						
+						//判断食物是否与蛇头重叠
+						if(isRectHit(snake.head, rect)){
+							isInSnake = true;
+							continue;
+						}
+						
+						isInSnake = false;
+						
+						for(var i=0; i<snake.body.length;i++){
+							if(isRectHit(snake.body[i],rect)){
+								isInSnake = true;
+								break;
+							}
+						}
+						
+					}
+					
+					return rect;
+					
+				}
+			
+				
+				document.onkeydown = function (event) {
+					var event = event || window.event;
+					switch (event.keyCode){
+						case 37: {
+							snake.direction = 0;
+							break;
+						}
+						
+						case 38: {
+							snake.direction = 1;
+							break;
+						}
+						
+						case 39: {
+							snake.direction = 2;
+							break;
+						}
+						
+						case 40: {
+							snake.direction = 3;
+							break;
+						}
+					}
+				}
+				
+				
+				
+				function isRectHit(rect1,rect2){
+					var minX1 = rect1.x;
+					var minX2 = rect2.x;
+					var minY1 = rect1.y;
+					var minY2 = rect2.y;
+					
+					var maxX1 = rect1.x + rect1.width;
+					var maxX2 = rect2.x + rect2.width;
+					var maxY1 = rect1.y + rect1.height;
+					var maxY2 = rect2.y + rect2.height;
+					
+					//判断矩形相交的最大、最小值
+					var minX = Math.max(minX1,minX2);
+					var minY = Math.max(minY1,minY2);
+					var maxX = Math.min(maxX1,maxX2);
+					var maxY = Math.min(maxY1,maxY2);
+					
+					if(minX < maxX && minY < maxY){
+						return true;
+					}else{
+						return false;
+					}
+					
+				}
+				
+				function getRandom(min,max){
+					return Math.round(Math.random() * (max - min) + min);
+				}
+				
+			}
+			
+		</script>
+	</body>
+</html>
