@@ -59,3 +59,10 @@
 | :------: | :----------: | :------: |
 |  change  | 选择图片成功 | 临时路径 |
 
+
+
+### 头像裁切组件
+
+"\<ImageCropper>\</ImageCropper>"
+
+文档：https://github.com/wx-plugin/image-cropper
