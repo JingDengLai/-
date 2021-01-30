@@ -1,12 +1,12 @@
 ## 小程序组件
 
-
+获取地址：https://github.com/JingDengLai/ZuJian/tree/master/components
 
 ### ActionSheet组件
 
 说明：小程序提供的wx.showActionSheet(Object object)不能满足多场景的需求，所以写了一个自定义的组件，可根据场景需求自定义内容。
 
-路径：common/ActionSheet/ActionSheet
+路径：components/ActionSheet/ActionSheet
 
 #### Attributes
 
@@ -36,4 +36,26 @@
     </view>
 </ActionSheet>
 ```
+
+
+
+### 头像显示组件
+
+路径：components/Avatar/Avatar
+
+#### Attributes
+
+|     参数     |                          说明                           |  类型   | 默认值 |
+| :----------: | :-----------------------------------------------------: | :-----: | :----: |
+|   topImage   | 头像的路径，没有值的话会默认使用<open-type>引入微信头像 | String  |  ' '   |
+|    isLook    |                       是否只查看                        | Boolean | false  |
+|    width     |                          宽度                           | Number  |  250   |
+|    height    |                          高度                           | Number  |  250   |
+| borderRadius |                 圆角，非百分比要带单位                  | String  |  50%   |
+
+#### Event
+
+| 事件名称 |     说明     | 回调参数 |
+| :------: | :----------: | :------: |
+|  change  | 选择图片成功 | 临时路径 |
 

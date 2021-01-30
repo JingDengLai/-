@@ -1,0 +1,41 @@
+.content-box{
+    width: 250rpx;
+    height: 250rpx;
+    margin: 0 auto;
+    /* border-radius: 50%; */
+    /* overflow: hidden; */
+    /* box-shadow: 0 0 5px 2px rgb(161, 161, 161); */
+    position: relative;
+}
+.content-image{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.wx-open{
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+
+.camera-box{
+    position: absolute;
+    bottom: -15rpx;
+    right: -15rpx;
+    background-color: #ffffff;
+    border-radius: 50%;
+    width: 35rpx;
+    height: 35rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1rpx solid rgb(220, 220, 220);
+    z-index: 100;
+}
+
+.camera-icon{
+    width: 21rpx !important;
+    height: 18rpx !important;
+    display: block;
+}

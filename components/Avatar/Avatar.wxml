@@ -1,0 +1,12 @@
+<view class="avatar-container">
+    <view class="content-box" bindtap="{{isLook?'onLook':'uploadAvatar'}}" style="width: {{width}}rpx; height: {{height}}rpx">
+        <image src="{{userAvatar}}" mode="aspectFit" class="content-image" wx:if="{{userAvatar != ''}}" style="border-radius:{{borderRadius}}"></image>
+        <view class="wx-open" style="width: {{width}}rpx; height: {{height}}rpx; border-radius:{{borderRadius}}" wx:else>
+            <open-data type="userAvatarUrl" class="content-image"></open-data>
+        </view>
+        
+        <view class="camera-box" wx:if="{{!isLook}}">
+            <image class="camera-icon" src="../../images/camera.png"></image>
+        </view>
+    </view>
+</view>
