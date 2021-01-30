@@ -1,0 +1,11 @@
+
+<view class="sheetContianer" wx:if="{{showMask}}" catchtap="onHideMask">
+    
+</view>
+<view class="content" style="bottom: {{showMask? '0': -contentHeight+'px'}};visibility:{{showMask? 'unset': 'hidden'}}">
+    <slot></slot>
+
+    <view class="exit-box" wx:if="{{showCancel}}">
+        <view class="exit-content" catchtap="onHideMask">取消</view>
+    </view>
+</view>
